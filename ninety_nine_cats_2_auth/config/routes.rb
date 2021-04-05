@@ -8,5 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users 
+
+
   root to: redirect('/cats')
 end
