@@ -9,6 +9,20 @@
   </head>
 
   <body>
+  <header> 
+    <% if logged_in? %>
+      <span>Username: <%= current_user.username  %></span>
+      <form action="<%= session_url%>" method='GET'>
+        <input name='_method' value='delete' type="hidden">
+        <input type="submit" value='Logout'>
+      </form>
+    <% else %>
+      <form action="<%= new_session_url%>" method='GET'>
+        <input type="submit" value='Login'>
+      </form>
+    <% end %>
+  
+  </header>
     <%= yield %>
   </body>
 </html>
