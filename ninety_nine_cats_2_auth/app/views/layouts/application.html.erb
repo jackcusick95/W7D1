@@ -12,7 +12,7 @@
   <header> 
     <% if logged_in? %>
       <span>Username: <%= current_user.username  %></span>
-      <form action="<%= session_url%>" method='GET'>
+      <form action="<%= session_url%>" method='post'>
         <input name='_method' value='delete' type="hidden">
         <input type="submit" value='Logout'>
       </form>
