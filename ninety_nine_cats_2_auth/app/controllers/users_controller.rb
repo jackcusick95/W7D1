@@ -1,5 +1,7 @@
-
 class UsersController < ApplicationController
+
+    before_action :require_logged_out, only: [:new, :create]
+    before_action :require_logged_in, only: [:index]
 
     def index
         @users = User.all 
@@ -11,16 +13,22 @@ class UsersController < ApplicationController
         render :new 
     end 
 
-    def create
+    def create #signup
         @user = User.new(user_params)
-
+        # debugger
         if @user.save
-           login!(@user) 
+           login_user!(@user) 
            redirect_to user_url(@user)
         else 
             render :new
         end 
     end 
+
+    def show
+        @user = User.find(params[:id])
+
+        render :show
+    end
 
     private
 
